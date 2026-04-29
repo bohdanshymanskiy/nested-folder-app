@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Delete,
-  FileTypeValidator,
   Get,
   Param,
   ParseFilePipe,
@@ -58,7 +57,7 @@ export class FilesController {
     @Req() req: AuthRequest,
     @UploadedFile(
       new ParseFilePipe({
-        validators: [new FileTypeValidator({ fileType: /^(image\/.+|application\/pdf)$/ })],
+        fileIsRequired: true,
       }),
     )
     file: Express.Multer.File,

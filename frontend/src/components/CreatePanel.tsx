@@ -32,15 +32,13 @@ export function CreatePanel() {
   };
 
   const handleUpload = async (file: File) => {
-    console.log(file);
     await upload.mutateAsync(file);
     message.success(`"${file.name}" uploaded`);
-    return false;
   };
 
   return (
     <Card title="Add files" size="small" className={styles.panel}>
-      <Space direction="vertical" size={10} className={styles.row}>
+      <Space orientation="vertical" size={10} className={styles.row}>
         <Space.Compact className={styles.row}>
           <Input
             placeholder="Folder name"
@@ -82,8 +80,8 @@ export function CreatePanel() {
         </Space.Compact>
 
         <Upload
-          beforeUpload={(_, fileList) => {
-            fileList.forEach(handleUpload);
+          beforeUpload={(file) => {
+            void handleUpload(file);
             return false;
           }}
           showUploadList={false}

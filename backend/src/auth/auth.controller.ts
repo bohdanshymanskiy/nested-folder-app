@@ -1,9 +1,14 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { ApiBody, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { IsEmail, IsString, MinLength } from "class-validator";
 import { AuthService } from "./auth.service";
 
 class AuthDto {
+  @IsEmail()
   email!: string;
+
+  @IsString()
+  @MinLength(1)
   password!: string;
 }
 
